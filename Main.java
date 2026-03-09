@@ -9,22 +9,17 @@ public class Main
     
 /***** DECLARATION SECTION *****/
 		int jdnBirth, jdnToday, jdnKatherine, jdnSputnik;
-		int dayBirth, monthBirth, yearBirth;
-		
-
-
+		//int monthBirth, dayBirth, yearBirth;
 
 		/***** INPUT SECTION *****/
-		dayBirth = UtilityBelt.readInt("Enter Date of Birth 1-31: ",1 ,31);
-		monthBirth = UtilityBelt.readInt("Enter Birth month 1-12: ",1 ,12);
-		yearBirth = UtilityBelt.readInt("Enter Year of Birth: ",1 ,3000);
-		
-		
+		//dayBirth = UtilityBelt.readInt("Enter Date of Birth 1-31: ",1 ,31);
+		//monthBirth = UtilityBelt.readInt("Enter Birth month 1-12: ",1 ,12);
+		//yearBirth = UtilityBelt.readInt("Enter Year of Birth: ",1 ,3000);
 		
 		
 		/***** INITIALIZATION SECTION *****/
 		// 1. Calculation for your Birthdate.
-		jdnBirth = calcJulianDate(monthBirth, dayBirth, yearBirth);
+		jdnBirth = calcJulianDate(7, 14, 1995);
 	
 		// 2. Calculate JDN for today
 		jdnToday = calcJulianDate( 2, 2, 2020);
@@ -39,7 +34,7 @@ public class Main
 		/***** OUTPUT SECTION *****/
 		String line1 = String.format( "Julian Day Number for today's date, 2/2/2020, is %,d.", jdnToday);
 		String line2 = String.format( "Julian Day Number for Katherine Johnson's birthday, 8/26/1918, is %,d.", jdnKatherine);
-		String line3 = String.format( "The Julian Day Number for your birthday is %,d.", jdnBirth);
+		String line3 = String.format( "The Julian Day Number for my birthday, 07/14/1995, is %,d.", jdnBirth);
 		String line4 = String.format("Julian Day Number for the Sputnik 1 launch 10/4/1957, is %,d.\n", jdnSputnik);
 
 		printCentered(138,"Julian Day Calculator");
