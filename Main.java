@@ -1,64 +1,85 @@
+// NAME: Jonathan Smith
 // PARTNER NAME: 
-// PARTNER NAME: 
-// CS111 SECTION #: 
-// DATE: 03/04/2026
+// CS111 SECTION #: 1258
+// DATE: 03/08/2026
 public class Main
 {
-    public static void main (String[] args)
+    public static void main (String[] args){
 
     
 /***** DECLARATION SECTION *****/
-		int a, m, y, a1, m1, y1;
-		double jdnBirth, jdnToday;
-		int day, month, year,dayBirth, monthBirth, yearBirth;
-		double dayDiff,age;
-
-		/***** INITIALIZATION SECTION *****/
+		int jdnBirth, jdnToday, jdnKatherine, jdnSputnik;
+		int dayBirth, monthBirth, yearBirth;
 		
 
 
 
 		/***** INPUT SECTION *****/
-		// N/A (no input for this lab)
+		dayBirth = UtilityBelt.readInt("Enter Date of Birth 1-31: ",1 ,31);
+		monthBirth = UtilityBelt.readInt("Enter Birth month 1-12: ",1 ,12);
+		yearBirth = UtilityBelt.readInt("Enter Year of Birth: ",1 ,3000);
 		
 		
 		
 		
-		/***** CALCULATION & PROCESSING SECTION *****/
-		// 1. Calculation for Birthdate.
-		dayBirth = UtilityBelt.readInt("Enter Date of Birth 1-31: ",0 ,31);
-		monthBirth = UtilityBelt.readInt("Enter Birth month 1-12: ",0 ,12);
-		yearBirth = UtilityBelt.readInt("Enter Year of Birth: ",0 ,2050);
-
-		a = (14 - monthBirth) / 12;
-		y = yearBirth + 4800 - a;
-		m = monthBirth + (12 * a) - 3;
-		jdnBirth = dayBirth + ((153 * m + 2) / 5) + (365 * y) + (y / 4) - (y / 100) + (y / 400) - 32045;
-
-		// 2. Calculation for Today.
-		day = 2;
-		month = 2;
-		year = 2020;
-
-		a1 = (14 - 2) / 12;
-		y1 = year + 4800 - a1;
-		m1 = month + (12 * a1) - 3;
-		jdnToday = day + ((153 * m1 + 2) / 5) + (365 * y1) + (y1 / 4) - (y1 / 100) + (y1 / 400) - 32045;
-
+		/***** INITIALIZATION SECTION *****/
+		// 1. Calculation for your Birthdate.
+		jdnBirth = calcJulianDate(monthBirth, dayBirth, yearBirth);
 	
-		dayDiff = jdnToday - jdnBirth;
-		age = dayDiff / 365;
+		// 2. Calculate JDN for today
+		jdnToday = calcJulianDate( 2, 2, 2020);
+
+		// 3. Calculate JDN for Katherine
+		jdnKatherine = calcJulianDate(8, 26, 1918);
+
+		// 4. Calculate JDN for Sputnik 1 lauch: 10/4/1957
+		jdnSputnik = calcJulianDate(10,4,1957);
 		
 		
 		/***** OUTPUT SECTION *****/
-		System.out.println( "Julian Day Number for today's date, 2/2/2020, is " + (int) jdnToday);
-		System.out.println( "Julian Day Number for birthday, 8/26/1918, is " + (int) jdnBirth);
-		System.out.print( "The difference in days is " + (int) (jdnToday - jdnBirth));
-		System.out.print( ", which makes you approximately " + (int) age);
-		System.out.println(" years old!");
+		String line1 = String.format( "Julian Day Number for today's date, 2/2/2020, is %,d.", jdnToday);
+		String line2 = String.format( "Julian Day Number for Katherine Johnson's birthday, 8/26/1918, is %,d.", jdnKatherine);
+		String line3 = String.format( "The Julian Day Number for you birthday is %,d.", jdnBirth);
+		String line4 = String.format("Julian Day Number for the Sputnik 1 launch 10/4/1957, is %,d.\n", jdnSputnik);
 
+		printCentered(138,"Julian Day Calculator");
+		printCentered(138, "---------------------");
+		printCentered(138, line1);
+		printCentered(138, line2);
+		printCentered(138, line3);
+		printCentered(138, line4);
+	}
+		/**
+		 * Calculates the amount of padding needed to center a string 
+		 * and prints it to the consel.
+		 * @param width Total character width of the line.
+		 * @param text The string of text to be centered.
+		 */
+			public static void printCentered(int width, String text){
+			int textLength = text.length();
+			int padding = (width - textLength) / 2;
+			
+			System.out.printf("%" + (padding + textLength) + "s%n", text);
+		}
 
-    public static int calcJulianDate(int monthToday, int dayToday,int yearToday){
-    return 0;
-    }
+		/**
+		 * Calculates the Julian Day Number for a given Gregorian date.
+		 * Uses integer arithmetic to determine the number of day
+		 * since January 1, 4713 BCE.
+		 * @param monthToday The month (1-12).
+		 * @param dayToday The day of month (1-31).
+		 * @param yearToday The year.
+		 * @return The calculated Julian Day Number as an integer.
+		 */
+		public static int calcJulianDate(int monthToday, int dayToday, int yearToday) {
+		int a = (14 - monthToday) / 12;
+		int y = yearToday + 4800 - a;
+		int m = monthToday + (12 * a) - 3;
+		//Calculations
+		int resultJdn = dayToday + ((153 * m + 2) / 5) + (365 * y) + (y / 4) - (y / 100) + (y / 400) - 32045;
+
+		return resultJdn;
+		}
+		
+
 }
